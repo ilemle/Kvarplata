@@ -1,8 +1,12 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+
 import { AppDispatch } from "..";
 import { authSlice } from "../reducers/AuthSlice";
+
 import { authApi } from "../../api";
 import { ITokensResponse } from "../../interfaces/auth";
+import { FlashMessages } from "../../components/FlashMessage";
+import { errorMessageForUser } from "../../utils/errorMessageForUsers";
 
 export const getToken = (username: string, password: string) => async (dispatch: AppDispatch) => {
 
@@ -18,8 +22,10 @@ export const getToken = (username: string, password: string) => async (dispatch:
     } catch (e) {
         const errors = e as Error | AxiosError;
         if (!axios.isAxiosError(errors)) {
+            FlashMessages.FlashMessageError()
             dispatch(authSlice.actions.setAuthError('Ошибка'))
         }
+        FlashMessages.FlashMessageError(errors.message)
         dispatch(authSlice.actions.setAuthError(errors.message))
 
     }

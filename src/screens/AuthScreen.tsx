@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import Screen from "../components/Screen"
-import { TextCustom } from "../components/TextCustom"
+
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { getToken } from "../store/actionCreators.ts/authActions"
 import { authSlice } from "../store/reducers/AuthSlice"
-import { colors } from "../theme/colors"
 
+import Screen from "../components/Screen"
+import { TextCustom } from "../components/TextCustom"
+import { colors } from "../theme/colors"
 
 const AuthScreen = () => {
 
@@ -23,11 +24,6 @@ const AuthScreen = () => {
 
     const handleAuth = () => {
         dispatch(getToken(username, password))
-    }
-
-    if (authError) {
-        Alert.alert(authError)
-        dispatch(setAuthError(''))
     }
 
     return (
