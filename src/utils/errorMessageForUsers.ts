@@ -1,8 +1,6 @@
 
 
-export const errorMessageForUser = (message: string): string => {
-
-    const errorCode = message.slice(-3, message.length)
+export const errorCodeMessageForUser = (errorCode: string): string => {
 
     switch (errorCode) {
         case '500':

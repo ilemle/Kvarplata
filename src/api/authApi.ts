@@ -10,8 +10,6 @@ const authApi = {
         const clientSecret = '050e1e2c-cdb4-47ca-b698-bf8fbf9a6ae1'
         const fullClientId = clientId + '_' + clientInstanceId
 
-        // const username = '59999998022'
-        // const password = 'PMTVTT6'
         const token = `${fullClientId}:${clientSecret}`
 
         const endCodeToken = Base64.btoa(token)

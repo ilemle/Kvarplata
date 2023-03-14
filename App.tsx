@@ -13,7 +13,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <MainNavigator />
-      <FlashMessage position = "top"/>
+      <FlashMessage/>
     </Provider>
   )
 }

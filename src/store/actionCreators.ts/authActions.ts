@@ -6,7 +6,6 @@ import { authSlice } from "../reducers/AuthSlice";
 import { authApi } from "../../api";
 import { ITokensResponse } from "../../interfaces/auth";
 import { FlashMessages } from "../../components/FlashMessage";
-import { errorMessageForUser } from "../../utils/errorMessageForUsers";
 
 export const getToken = (username: string, password: string) => async (dispatch: AppDispatch) => {
 
@@ -25,6 +24,7 @@ export const getToken = (username: string, password: string) => async (dispatch:
             FlashMessages.FlashMessageError()
             dispatch(authSlice.actions.setAuthError('Ошибка'))
         }
+        
         FlashMessages.FlashMessageError(errors.message)
         dispatch(authSlice.actions.setAuthError(errors.message))
 
