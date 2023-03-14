@@ -1,13 +1,14 @@
-import axios from "axios"
+
 import { instance } from "."
+import { IClientIdentify } from "../interfaces/auth"
 import Base64 from "../utils/base64"
 
 const authApi = {
 
-    getToken: (username: string, password: string) => {
-        const clientId = 'k24-test_test123'
-        const clientInstanceId = 'ClientInstance'
-        const clientSecret = '050e1e2c-cdb4-47ca-b698-bf8fbf9a6ae1'
+    getToken: (username: string, password: string, clienIdenify: IClientIdentify) => {
+        
+        const { clientId, clientInstanceId, clientSecret } = clienIdenify
+
         const fullClientId = clientId + '_' + clientInstanceId
 
         const token = `${fullClientId}:${clientSecret}`

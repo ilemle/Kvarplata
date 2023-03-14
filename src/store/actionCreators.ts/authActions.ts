@@ -6,13 +6,15 @@ import { authSlice } from "../reducers/AuthSlice";
 import { authApi } from "../../api";
 import { ITokensResponse } from "../../interfaces/auth";
 import { FlashMessages } from "../../components/FlashMessage";
+import { getClientIdentify } from "../../secret";
 
 export const getToken = (username: string, password: string) => async (dispatch: AppDispatch) => {
 
     try {
 
         dispatch(authSlice.actions.authIsLoading())
-        const result: AxiosResponse<ITokensResponse> = await authApi.getToken(username, password)
+        const clienIdenify = await getClientIdentify()
+        const result: AxiosResponse<ITokensResponse> = await authApi.getToken(username, password, clienIdenify)
 
         dispatch(authSlice.actions.authSuccess({
             access_token: result.data.access_token,
@@ -24,7 +26,7 @@ export const getToken = (username: string, password: string) => async (dispatch:
             FlashMessages.FlashMessageError()
             dispatch(authSlice.actions.setAuthError('Ошибка'))
         }
-        
+
         FlashMessages.FlashMessageError(errors.message)
         dispatch(authSlice.actions.setAuthError(errors.message))
 
