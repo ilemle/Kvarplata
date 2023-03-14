@@ -13,7 +13,7 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (internalAxiosRequestConfig: InternalAxiosRequestConfig) => {
-
+    
     const tokens: ITokens | undefined = await getUserTokens();
     console.log(tokens?.access_token);
     
