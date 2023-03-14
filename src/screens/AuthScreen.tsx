@@ -1,9 +1,8 @@
 import React, { useState } from "react"
-import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { getToken } from "../store/actionCreators.ts/authActions"
-import { authSlice } from "../store/reducers/AuthSlice"
 
 import Screen from "../components/Screen"
 import { TextCustom } from "../components/TextCustom"
@@ -11,10 +10,8 @@ import { colors } from "../theme/colors"
 
 const AuthScreen = () => {
 
-    const { token, authError, authIsLoading } = useAppSelector(state => state.authReducer)
+    const { authIsLoading } = useAppSelector(state => state.authReducer)
 
-    const count = useAppSelector(state => state.authReducer.count)
-    const { increment, decrement, setAuthError } = authSlice.actions
     const dispatch = useAppDispatch()
 
     const [username, setUsername] = useState<string>('')
@@ -40,8 +37,6 @@ const AuthScreen = () => {
                         <Text>Тестовые данные для входа </Text>
                         <Text>username:   5 999 999 80 22</Text>
                         <Text>pasword:   PMTVTT6</Text>
-                        <Text>{token?.access_token}</Text>
-                        <Text>{token?.refresh_token}</Text>
                     </View>
                 }
 

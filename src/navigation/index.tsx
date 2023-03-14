@@ -1,18 +1,19 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import AuthStack from "./AuthStack";
-import HomeStack from "./HomeStack";
+import MainAuthStack from "./MainAuthStack";
+import MainHomeStack from "./MainHomeStack";
+import { useAppSelector } from "../hooks/redux";
 
 
 
 const MainNavigator = () => {
 
-    const token = false
+    const {isAuth} = useAppSelector(state => state.authReducer)
 
     return (
         <NavigationContainer>
-            {token ? < HomeStack /> : <AuthStack />}
+            {isAuth ? < MainHomeStack /> : <MainAuthStack />}
         </NavigationContainer>
     )
 }

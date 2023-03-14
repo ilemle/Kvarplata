@@ -1,29 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { ITokens } from "../../interfaces/auth"
-
 interface AuthenticationSlice {
-    token: null | ITokens,
+    isAuth: boolean,
     authIsLoading: boolean,
     authError: string | '',
-
-    count: number,
 }
 
 const initialState: AuthenticationSlice = {
-    token: null,
+    isAuth: false,
     authIsLoading: false,
     authError: '',
-
-    count: 0,
 }
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        authSuccess(state, action: PayloadAction<ITokens>) {
+        setAuthStatus(state, action: PayloadAction<boolean>) {
             state.authIsLoading = false
-            state.token = action.payload
+            state.isAuth = action.payload
             state.authError = ''
         },
         authIsLoading(state) {
@@ -35,13 +29,6 @@ export const authSlice = createSlice({
         },
 
 
-
-        increment(state, action: PayloadAction<number>) {
-            state.count += action.payload
-        },
-        decrement(state, action: PayloadAction<number>) {
-            state.count -= action.payload
-        }
     }
 })
 

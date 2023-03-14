@@ -2740,6 +2740,7 @@ __metadata:
     react-native: 0.71.3
     react-native-device-info: 10.4.0
     react-native-dotenv: ^3.4.8
+    react-native-encrypted-storage: ^4.0.3
     react-native-flash-message: 0.4.0
     react-native-safe-area-context: 4.5.0
     react-native-screens: 3.20.0
@@ -8435,6 +8436,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-encrypted-storage@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "react-native-encrypted-storage@npm:4.0.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 9d2999c58559f1e4f66d1baf2c3edeff96cf42027900850d94c6bbea24ac9715047ce69bf6e8a73b68aff4508cf35dd88ac494ad5905933286ef3b75cd123e30
+  languageName: node
+  linkType: hard
+
 "react-native-flash-message@npm:0.4.0":
   version: 0.4.0
   resolution: "react-native-flash-message@npm:0.4.0"
@@ -8649,6 +8660,15 @@ __metadata:
     source-map: ~0.6.1
     tslib: ^2.0.1
   checksum: 14c35115cd9965950724cb2968f069a247fa79ce890643ab6dc3795c705b363f7b92a45238e9f765387c306763be9955f72047bb9d15b5d60b0a55f9e7912d5a
+  languageName: node
+  linkType: hard
+
+"redux-persist@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "redux-persist@npm:6.0.0"
+  peerDependencies:
+    redux: ">4.0.0"
+  checksum: edaf10dbf17351ce8058d0802357adae8665b3a1ff39371834e37838ddbe1a79cccbc717b8ba54acb5307651ccf51d0f7dc1cbc8dbae0726ff952d11ef61c6b8
   languageName: node
   linkType: hard
 
