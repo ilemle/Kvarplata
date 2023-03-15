@@ -3,10 +3,10 @@ import { instance } from "./instance"
 const userApi = {
 
     getUserInfo: () => {
-        const name = 'Sasha'
+        const name = '59999998022'
         console.log('getUserInfo');
-        console.log('instance', );
 
+        // return instance.get(`/tplus/v1/metering_device/59999998022`)
         return instance.get(`v1/profile`, { params: { name } })
     }
 

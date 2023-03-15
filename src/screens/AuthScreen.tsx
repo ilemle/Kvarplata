@@ -20,6 +20,7 @@ const AuthScreen = () => {
 
     const [isVisibleDev, setIsVisibleDev] = useState<boolean>(false)
 
+
     const handleAuth = () => {
         dispatch(getToken(login, password))
     }

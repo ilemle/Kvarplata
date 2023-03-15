@@ -37,6 +37,5 @@ export async function removeUserToken() {
         console.log('removing tokens');
     } catch (error) {
         console.log('error remove tokens: ', error);
-
     }
 }
