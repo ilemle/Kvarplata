@@ -1,9 +1,7 @@
 import React from "react";
-import { Text } from 'react-native'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-
 import HomeScreen from "../screens/HomeScreen";
+import { colors } from "../theme/colors";
 
 
 
@@ -12,8 +10,13 @@ const HomeStack = createNativeStackNavigator();
 const MainHomeStack = () => {
 
     return (
-        <HomeStack.Navigator>
-            <HomeStack.Screen name={'HomeScreen'} component={HomeScreen} />
+        <HomeStack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: colors.accent,
+            },
+            headerTintColor: colors.base_text,
+        }}>
+            <HomeStack.Screen name={'Профиль'} component={HomeScreen} />
         </HomeStack.Navigator>
     )
 }

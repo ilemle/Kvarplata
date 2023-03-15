@@ -1,11 +1,11 @@
-import { instance } from "."
+import { instance } from "./instance"
 import { IClientIdentify } from "../interfaces/auth"
 import Base64 from "../utils/base64"
 
 const authApi = {
 
     getToken: (username: string, password: string, clienIdenify: IClientIdentify) => {
-        
+
         const { clientId, clientInstanceId, clientSecret } = clienIdenify
         const fullClientId = clientId + '_' + clientInstanceId
         const token = `${fullClientId}:${clientSecret}`

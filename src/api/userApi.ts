@@ -1,11 +1,13 @@
-import { instance } from "."
-import { IClientIdentify } from "../interfaces/auth"
+import { instance } from "./instance"
 
 const userApi = {
 
     getUserInfo: () => {
-        return instance
-            .get(`v1/profile`)
+        const name = 'Sasha'
+        console.log('getUserInfo');
+        console.log('instance', );
+
+        return instance.get(`v1/profile`, { params: { name } })
     }
 
 }

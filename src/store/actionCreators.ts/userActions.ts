@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { AppDispatch } from "..";
-import userApi from "../../api/userApi";
+import {userApi} from "../../api";
 import { FlashMessages } from "../../components/FlashMessage";
 import { userSlice } from "../reducers/UserSlice";
 
@@ -19,9 +19,10 @@ export const getUserInfo = () => async (dispatch: AppDispatch) => {
         const errors = e as Error | AxiosError;
         if (!axios.isAxiosError(errors)) {
             FlashMessages.FlashMessageError()
-            dispatch(userSlice.actions.setUserError('Ошибка'))
+            dispatch(userSlice.actions.setUserError('Неизвестная ошибка'))
         }
-
+        console.log(e);
+        
         FlashMessages.FlashMessageError(errors.message)
         dispatch(userSlice.actions.setUserError(errors.message))
 

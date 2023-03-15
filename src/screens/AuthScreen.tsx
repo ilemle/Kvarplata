@@ -7,6 +7,7 @@ import { getToken } from "../store/actionCreators.ts/authActions"
 import Screen from "../components/Screen"
 import { TextCustom } from "../components/TextCustom"
 import { colors } from "../theme/colors"
+import { spaceTextDeleter } from "../utils/validation"
 
 const AuthScreen = () => {
 
@@ -14,26 +15,36 @@ const AuthScreen = () => {
 
     const dispatch = useAppDispatch()
 
-    const [username, setUsername] = useState<string>('')
+    const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
     const [isVisibleDev, setIsVisibleDev] = useState<boolean>(false)
 
     const handleAuth = () => {
-        dispatch(getToken(username, password))
+        dispatch(getToken(login, password))
+    }
+
+    const handleInputLogin = (login: string) => {
+        const _login = spaceTextDeleter(login)
+        setLogin(_login)
+    }
+
+    const handleInputPassword = (password: string) => {
+        const _password = spaceTextDeleter(password)
+        setPassword(_password)
     }
 
     return (
         <Screen viewStyle={styles.screen}>
             <>
                 <TouchableOpacity
-                    style={{ height: 50, width: 50, position: 'absolute', top: 25, left: 25, }}
+                    style={styles.testInfoButton}
                     onPress={() => setIsVisibleDev(!isVisibleDev)}>
                     <Text>i</Text>
                 </TouchableOpacity>
                 {
                     isVisibleDev &&
-                    <View style={{ position: 'absolute', top: 50, left: 35, }}>
+                    <View style={styles.testData}>
                         <Text>Тестовые данные для входа </Text>
                         <Text>username:   5 999 999 80 22</Text>
                         <Text>pasword:   PMTVTT6</Text>
@@ -47,15 +58,17 @@ const AuthScreen = () => {
                         < TextInput
                             placeholder={'Ваш логин'}
                             textAlign={'center'}
+                            placeholderTextColor={colors.base_text}
                             style={styles.loginInput}
-                            onChange={(input) => setUsername(input.nativeEvent.text)}
-                            value={username}
+                            onChange={(input) => handleInputLogin(input.nativeEvent.text)}
+                            value={login}
                         />
                         <TextInput
                             placeholder={'Ваш пароль'}
                             textAlign={'center'}
+                            placeholderTextColor={colors.base_text}
                             style={styles.passwordInput}
-                            onChange={(input) => setPassword(input.nativeEvent.text)}
+                            onChange={(input) => handleInputPassword(input.nativeEvent.text)}
                             value={password}
                         />
                         <TouchableOpacity
@@ -74,6 +87,11 @@ const AuthScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
     loginInput: {
         height: 50,
         borderRadius: 10,
@@ -85,11 +103,6 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: colors.input_background
     },
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
     authButton: {
         height: 50,
         borderRadius: 10,
@@ -99,7 +112,21 @@ const styles = StyleSheet.create({
         backgroundColor: colors.button_confirm
     },
     authText: {
-        color: colors.light_text
+        color: colors.secondary_text
+    },
+    testData: {
+        position: 'absolute',
+        top: 50,
+        left: 35,
+    },
+    testInfoButton: {
+        height: 50,
+        width: 50,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 

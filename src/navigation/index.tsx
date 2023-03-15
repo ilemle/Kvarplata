@@ -9,10 +9,10 @@ import { useAppSelector } from "../hooks/redux";
 
 const MainNavigator = () => {
 
-    const {isAuth} = useAppSelector(state => state.authReducer)
+    const { isAuth } = useAppSelector(state => state.authReducer)
 
     return (
-        <NavigationContainer>
+        <NavigationContainer  >
             {isAuth ? < MainHomeStack /> : <MainAuthStack />}
         </NavigationContainer>
     )

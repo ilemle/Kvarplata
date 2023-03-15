@@ -16,8 +16,7 @@ export const getToken = (username: string, password: string) => async (dispatch:
         dispatch(authSlice.actions.authIsLoading())
         const clienIdenify = await getClientIdentify()
         const result: AxiosResponse<ITokensResponse> = await authApi.getToken(username, password, clienIdenify)
-        console.log('result', result.data);
-
+  
         !!result && dispatch(authSlice.actions.setAuthStatus(true)) && setUserTokens({
             access_token: result.data.access_token,
             refresh_token: result.data.refresh_token,
@@ -27,7 +26,7 @@ export const getToken = (username: string, password: string) => async (dispatch:
         const errors = e as Error | AxiosError;
         if (!axios.isAxiosError(errors)) {
             FlashMessages.FlashMessageError()
-            dispatch(authSlice.actions.setAuthError('Ошибка'))
+            dispatch(authSlice.actions.setAuthError('Неизвестная ошибка'))
         }
 
         FlashMessages.FlashMessageError(errors.message)
@@ -43,11 +42,10 @@ export const logout = () => async (dispatch: AppDispatch) => {
         dispatch(authSlice.actions.setAuthStatus(false))
         removeUserToken()
 
-
     } catch (e) {
         const errors = e as Error | AxiosError;
         if (!axios.isAxiosError(errors)) {
-            FlashMessages.FlashMessageError()
+            FlashMessages.FlashMessageError('Неизвестная ошибка')
         }
 
         FlashMessages.FlashMessageError(errors.message)
